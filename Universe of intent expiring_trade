@@ -1,15 +1,18 @@
 Universe of intent expiring_trade 
 
 Intent	Entity	Slot	Action	Form	Utterance
-expiring_trade_search	trade_type, categorical: option, forward	<-			
+expiring_trade_search	trade_type, categorical: option, forward
+influece_conversation: False	<-		Similar to revenue form	utterance_intro_expiring_trade_search
 inform_trade_type	human_name	<-			utterance_ask_product_type
-enter_date (all ready have it)	expiring_time_range	<-			
+enter_date (all ready have it)	expiring_time_range:
+Initial value = 7 days	<-			utterance_check_target
 	client (all ready have it)	<-			
-		check_target: 
+	? How check my team handled in revenue intent 	check_target: 
 all my client; 
 A specific client;
 a human_name; 
-My team;			
+My team;	Validate the form:
+- write slot check_target based on user input		
 
 
 Questions for Jeff:
@@ -28,4 +31,29 @@ Happiest path:
 ++ you want to search expiring trade for: all your clients; a specific client; a colleague; your team?
 >> all my clients
 ++ search, return results for expiring trade in 7 days
+
+
+Unhappy path 1: ask for unsupported product
+>> check expiring trade
+++ which product you want to search for: option or forward
+>> ETF
+++ we only can search for: option or forward
+>> option (or cancel the search)
+++ you want to search expiring trade for: all your clients; a specific client; a colleague; your team?
+>> all my clients
+++ search, return results for expiring trade in 7 days
+
+Unhappy path 2: time range other than 7 days
+>> check expiring trade
+++ which product you want to search for: option or forward
+>> ETF
+++ we only can search for: option or forward
+>> option
+++ you want to search expiring trade for: all your clients; a specific client; a colleague; your team?
+>> all my clients in 3 months
+++ search, return results for expiring trade in 3 months
+
+
+Unhappy path 3:
+Intent switch 
 
