@@ -1,0 +1,31 @@
+Universe of intent expiring_trade 
+
+Intent	Entity	Slot	Action	Form	Utterance
+expiring_trade_search	trade_type, categorical: option, forward	<-			
+inform_trade_type	human_name	<-			utterance_ask_product_type
+enter_date (all ready have it)	expiring_time_range	<-			
+	client (all ready have it)	<-			
+		check_target: 
+all my client; 
+A specific client;
+a human_name; 
+My team;			
+
+
+Questions for Jeff:
+What does product entitlement mean? Dose user need to say something here?
+
+New flow suggestion
+
+Expiring time range: 7 days default
+>>User: “show me expiring trade in 3 months”
+
+
+Happiest path:
+>> check expiring trade
+++ which product you want to search for: option or forward
+>> option
+++ you want to search expiring trade for: all your clients; a specific client; a colleague; your team?
+>> all my clients
+++ search, return results for expiring trade in 7 days
+
