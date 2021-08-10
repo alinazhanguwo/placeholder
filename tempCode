@@ -1,0 +1,9 @@
+expiring_trade_form:
+    required_slots:
+       human_name:
+          - type: from_entity
+            entity: human_name
+          - type: from_text
+            not_intent:
+              - revenue_intent
+     
