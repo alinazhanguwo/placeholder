@@ -1,9 +1,50 @@
-expiring_trade_form:
-    required_slots:
-       human_name:
-          - type: from_entity
-            entity: human_name
-          - type: from_text
-            not_intent:
-              - revenue_intent
-     
+
+
+HAPPIEST PATH 1:
+>>Hi
+++I can help you with revenue, expiring trade, etc.
+>>expiring trade search
+++which product you want to search for: 
+         - FX options
+         - FX forward
+>> FX options                                           
+++okay. who do you want to search expiring trade of:     
+        - all your clients
+        - a specific client under your name
+        - a colleague
+        - your team
+>> myself
+++ sure. Here is the expiring trades of {FX options}: …
+
+
+
+HAPPIEST PATH 2:
+>>Hi
+++I can help you with revenue, expiring trade, etc.
+>>search expiring trade of FX options (for my clients)
+++ sure. Here is the expiring trades of {FX options}: …
+
+
+
+HAPPIEST PATH 3:
+>>Hi
+++I can help you with revenue, expiring trade, etc.
+>>search expiring trade of FX options for my team / James Bond / blackrock
+++ sure. Here is the expiring trades of {FX options} for {all your clients/ blackrock/ your team/ James Bond}: …
+
+
+
+
+Questions: do we make it default: 7 days; all my clients;
+
+
+
+Using a Custom Action to Ask For the Next Slot
+https://rasa.com/docs/rasa/forms/#the-requested_slot-slot
+
+
+
+
+
+
+
