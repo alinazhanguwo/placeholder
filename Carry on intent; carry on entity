@@ -1,0 +1,23 @@
+Carry on intent; carry on entity 
+Previous_intent
+Previous_trade_product_name
+Previous_trade_search_target
+previous_trade_time
+
+
+
+Tricky case 1:
+“Expiring trades next month from Tenccor” — tenccor for user
+“Expiring trades my teammate Jame bond” — all clients under James
++ “How about blackrock”: should return “not support specific client search on behalf of teammate” or return user’s blackrock
++ “how about mine” : should return all clients or tenccor
+
+
+
+
+Tricky case 2:
+Trade-trade-revenue-trade
+“Expiring trades next month from Tenccor”
+Revenue
+“Expiring next week”
+Do we carry the Tenor or product name or time frame?
