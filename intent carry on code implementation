@@ -1,0 +1,32 @@
+intent carry on code implementation
+
+
+
+Unit tests:
+happy paths - should carry on:
+user: revenue for my top 5 clients in 2019?
+bot: return results
+user: how about blackrock
+expected: bot:  return revenue of blackrock in 2019
+
+user: expiring options in my team
+bot: return results
+user: how about blackrock
+expected: bot:  return expiring options of blackrock
+
+
+unhappy paths - should not carry on:
+
+user: revenue for my top 5 clients in 2019?
+bot: return results
+user: how about options
+expected: bot:  hi, i can help you with revenue, trade, …
+
+user: expiring options for my team
+bot: return results
+user: how about USD 
+or user: how about top 5 clients
+expected: bot:  hi, i can help you with revenue, trade, …
+
+
+
