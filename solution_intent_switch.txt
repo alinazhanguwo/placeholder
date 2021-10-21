@@ -1,0 +1,22 @@
+“Actually, check revenue for blackrock in 2020”
+
+1> Store the entity and value
+2> Undo the utterance to bring request slot of trade form to the previous correct value
+3> then activate revenue form and write the stored slot value to requested slot defined in revenue form
+
+
+How to undo an utterance or action:
+ActionReverted vs UserUtteranceReverted
+i.e. return [UserUtteranceReverted()] or evt=UserUtteranceReverted()
+References:
+https://rasa.com/docs/action-server/sdk-events
+https://forum.rasa.com/t/difference-actionreverted-and-userutterancereverted/13327/4
+https://rasa.com/docs/rasa/fallback-handoff
+
+
+Tests:
+User: expiry trade in 1999
+Bot: ask for product name
+User: for my clients
+Bot: ask for product name
+User: actually, revenue of blackrock in 2020
