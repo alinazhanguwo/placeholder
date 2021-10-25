@@ -1,0 +1,115 @@
+
+# intent switch
+
+
+
+## form has entity with role
+
+“Actually, book a ticket from Toronto to New York”
+{city: toronto, city: new york}
+
+The current code will first write to: 
+{departure: toronto, city: toronto, destination: toronto, city: toronto}
+then the code will write:
+{departure: new york, city: new york, destination: new york, city: new york}
+
+
+And what if user say:
+“actually, book a flight ticket to Vancouver”
+How the bot know witch requested_slot to assign the value?
+
+More concretely,
+User: book hotel 
+Bot: which city 
+User: actually, book a flight ticket to Vancouver
+Or 
+actually, book a flight ticket depart from Banff tonight
+
+
+hotel_form
+Requested_slots
+hotel_city
+- from_entity: city
+
+flight_ticket_form
+Requested_slots
+departure:
+- from_entity: city role: departure
+destination:
+- from_entity:city role: destination 
+
+
+How the bots know which requested_slots in  new intent form to write to when there is no info about role?
+
+
+
+
+## for a regular case
+In the current solution, requested_slots between two intents are not used actually. 
+For example: expiring_time vs time,
+trade_client vs client 
+Because the name of requests slots are different between forms, the only useful info is the entities, such as client_id, client_name, and so on. 
+List is enough; don’t need a dict.
+And the O(n^2) can be reduced to O(n) by fetch the full entity list ahead for comparison.
+
+
+
+
+
+
+
+
+
+
+
+
+## There is another scenario: when a form use same entity as source in multiple requested slots. 
+
+restaurant_form:
+num_of_people:
+- from_entity: number 
+
+hotel_form:
+num_of_guest:
+- from_entity: number
+num_of_bed:
+- from_entity: number
+
+
+User: make a reservation at red lobster 
+Bot: for how many people?
+User: actually, book hotel for us first. 2 queens bed room. 
+
+How the bots know which requested_slots in  new intent form to write to when the extracted entity is only number and num_of_people?
+{num_of_people: 2, number:2}
+
+
+
+## Intent form with optional dynamic added entity
+
+User: revenue top 5 from James
+Bot: ask for time
+User: actually, expiry trades of James
+
+Human_name is not entity of any requested slots in trade form  
+
+
+
+
+To summarize, the examples hit drawbacks of the current solution. It doesn’t work for:
+1. Intent form uses entity with roles
+2. Intent form uses same entity as source in multiple requested slots. 
+3. Intent form with optional dynamic added entity
+
+
+
+It literally a bug of rasa:
+“Actually, revenue” VS “Actually, revenue for blackrock in 2020”
+Cause: The new form is not activated in time.
+
+
+To work around with it:
+1> store the intent
+2> undo user utterance
+3> active the intent form
+4> redo the utterance
