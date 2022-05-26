@@ -1,0 +1,6 @@
+The agenda for Call report EDA demo is as follows:
+1. Statistical analysis: i.e. hottest industry groups, busiest banker. 
+2. Segmentation and primary key: foundation of training dataset. 
+3. WordCloud with custom stop words - full text vs top 3 industry groups: what things were frequently mentioned?
+4. Top bigrams and trigrams; Emotion polarities: a potential use case: assume we are a banker. I have 1000 call reports. what didn’t progress well? Do I need to put more attention on it. Do I need to request resource? What did I learn from this experience.  
+5. Text clustering and visualization: a reference for defining groups in classification. 
